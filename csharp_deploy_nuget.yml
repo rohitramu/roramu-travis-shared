@@ -1,0 +1,12 @@
+env:
+  global:
+    - NUGET_SOURCE_PULL=https://api.nuget.org/v3/index.json
+    - NUGET_SOURCE_PUSH=https://api.nuget.org/v3/index.json
+    - secure: "pRbUS1pd/aLFYKvdH7Sz0ERXqwqWrZJcTWl1C+aHkzKCPY2jxnUkYqAYJCqDDXeHlpSLeuWo9jbZdY984g6ZUOw+bvIWZeIC18V5LPgOx2m3REYljnLVPEz2FGDcs8iVpER0iG/8zH9Yad8SE8rxJSnawTSSTWfaJRs9La7RLm75xCAKt23Vd5XI5YQ1mwmSuZTRVAIh+YaYp7dyYoIKyHofz5Iz/3RBlbfjuBIOXd2no02pRk3bVi20oz2TdYglHlpY1J3SVZSHr2BJ+wRhcLH0beRgOZqMQvhDnLEN0JFnbboe8W9GDhnsGeHS/De2lQ/tCuhmxuIvN0sW9lt4cAuBgjnzFUJDCr6IsgYq7xiQIdVayGTT65atjiy62xf15+2HnA2g19F6TgANXemxGIEMLDpX6pphxUHRxIXoVdg4UakgS55i1+YTFvdyOPp2Sj3sA6GUvShHJH10j3xIP8EWCiYYWbcuyuwlhn/QHgJ888MemrJf8nN2Fkpn2Lox1cgNO8mC49cUfekM+XfTfzQ6sM0dA4i338AgPejstnI4gFNPfp6ExL7KLP834hNoaeAenpA8LIr0Sd86w0bonZvsdrvuKcYktBdhua8khwgWEIYXBk9I/d9WVrEc15gNwbSLGnyVZ+Yc5BuG5BauFGxC3rH8e+wcx7YHBv/HfKU="
+deploy:
+  edge: true
+  provider: script
+  script: |-
+    find -name '*.nupkg' | xargs -i dotnet nuget push {} --api-key $NUGET_API_KEY --source $NUGET_SOURCE_PUSH
+  on:
+    tags: true
