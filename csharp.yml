@@ -13,7 +13,7 @@ before_install:
   - NUGET_PACKAGE_VERSION_NUM="${NUGET_PACKAGE_VERSION_STRING:1}"
   - echo "NuGet version = $NUGET_PACKAGE_VERSION_STRING"
 script:
-  - dotnet restore --no-cache --force --verbosity normal
-  - dotnet build $TRAVIS_SOLUTION --no-restore --configuration $CONFIGURATION --source $NUGET_SOURCE_PULL -p:Version=$NUGET_PACKAGE_VERSION_NUM --verbosity normal
-  - dotnet publish --no-build -p:Version=$NUGET_PACKAGE_VERSION_NUM --verbosity normal
-  - dotnet test --no-build --logger trx --results-directory "test-results" --collect "Code coverage" --verbosity normal
+  - dotnet restore --no-cache --force
+  - dotnet build $TRAVIS_SOLUTION --no-restore --configuration $CONFIGURATION --source $NUGET_SOURCE_PULL -p:Version=$NUGET_PACKAGE_VERSION_NUM
+  - dotnet publish --no-build -p:Version=$NUGET_PACKAGE_VERSION_NUM
+  - dotnet test --no-build --logger trx --results-directory "test-results" --collect "Code coverage"
