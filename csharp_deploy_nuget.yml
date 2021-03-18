@@ -7,6 +7,6 @@ deploy:
   edge: true
   provider: script
   script: |-
-    find -name '*.nupkg' | xargs -i dotnet nuget push {} --api-key $NUGET_API_KEY --source $NUGET_SOURCE_PUSH
+    find -name '*.nupkg' | xargs -i dotnet nuget push {} --api-key $NUGET_API_KEY --source $NUGET_SOURCE_PUSH --verbosity normal
   on:
     tags: true
